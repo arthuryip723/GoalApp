@@ -4,6 +4,23 @@ class GoalsController < ApplicationController
     @public_goals = Goal.where(category: "public").includes(:user)
     @private_goals = current_user.goals.where(category: "private").includes(:user)
     @completed_goals = current_user.goals.where(status: "complete")
+    # @users_ordered_cheers = User.joins(:goals).joins(:cheers).group(:id).order(count: :desc)
+    <<-SQL
+      SELECT
+        users.*, COUNT(*)
+      FROM
+        users
+      JOIN
+        goals
+        ON goals.user_id = users.id
+      JOIN
+        cheers
+        ON cheers.goal_id = goals.id
+      GROUP BY
+        users.id
+      ORDER BY
+        COUNT(*) DESC
+    SQL
   end
 
   def new
