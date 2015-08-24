@@ -1,0 +1,22 @@
+<h1>My Goals</h1>
+<h2>Public Goals</h2>
+<ul>
+  <% @public_goals.each do |goal| %>
+    <li>
+      <%= goal.body %>, status: <%= goal.status %>
+      <%= button_to "Complete", complete_goal_url(goal) if goal.status != "complete"%>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Private Goals</h2>
+<ul>
+  <% @private_goals.each do |goal| %>
+    <li>
+      <%= goal.body %>, status: <%= goal.status %>
+      <%= button_to "Complete", complete_goal_url(goal) if goal.status != "complete"%>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create a Goal", new_goal_url %>

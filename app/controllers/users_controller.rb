@@ -14,6 +14,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    @public_goals = @user.goals.where(category: "public")
+    if current_user == @user
+      @private_goals = @user.goals.where(category: "private")
+    end
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :password)

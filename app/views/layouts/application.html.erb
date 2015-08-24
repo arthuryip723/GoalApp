@@ -9,6 +9,7 @@
 <body>
 <% if signed_in? %>
   <%= current_user.username %>
+  <%= link_to "Go to my Goals", current_user %>
   <%= button_to "Sign Out", session_url, method: :delete %>
 <% else %>
   <%= link_to "Sign In", new_session_url %>

@@ -20,7 +20,7 @@ feature "Creating a Goal" do
     it "hides private goals from other users" do
       make_goal("this is arthurs private goal", "Private")
       sign_out
-      sign_up("derek")
+      sign_up("derekc")
       expect(page).not_to have_content "this is arthurs private goal"
     end
 
