@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :goals do
     member do
       post :complete
+      post :cheer
     end
   end
   resource :session, only: [:new, :create, :destroy]

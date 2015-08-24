@@ -1,6 +1,9 @@
 <h2><%= @goal.body %></h2>
 <p>Created by: <%= @goal.user.username %></p>
 
+<p>Cheer count: <%= @cheers_count %></p>
+<%= button_to "Cheer!", cheer_goal_url(@goal) %>
+
 <h3>Comments</h3>
 <ul>
 <% @comments.each do |comment| %>

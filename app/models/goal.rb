@@ -1,5 +1,5 @@
 class Goal < ActiveRecord::Base
-  validates :body, :user_id, :category, :status, presence: true
+  validates :body, :user, :category, :status, presence: true
   validates :category, inclusion: %w(public private)
   validates :status, inclusion: %W(complete uncomplete)
   after_initialize do
@@ -8,4 +8,5 @@ class Goal < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments, as: :commentable
+  has_many :cheers
 end

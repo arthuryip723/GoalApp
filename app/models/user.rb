@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   has_many :authored_comments, class_name: "Comment", foreign_key: :author_id
 
+  has_many :cheers, inverse_of: :user
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
 

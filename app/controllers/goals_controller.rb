@@ -52,6 +52,15 @@ class GoalsController < ApplicationController
   def show
     @goal = Goal.find(params[:id])
     @comments = @goal.comments
+    @cheers_count = @goal.cheers.count
+  end
+
+  def cheer
+    @cheer = current_user.cheers.new(goal_id: params[:id])
+    unless @cheer.save
+      flash[:errors] = @cheer.errors.full_messages
+    end
+    redirect_to goal_url(params[:id])
   end
 
   private
