@@ -18,32 +18,36 @@ feature "the signup process" do
       click_button 'Sign Up'
       expect(page).to have_content "arthur"
     end
-
   end
-
-
 end
 
 feature "logging in" do
   before :each do
     visit "/session/new"
   end
+
   it "shows username on the homepage after login" do
     sign_up_as_arthur
     sign_in("arthur")
-    # fill_in "Username", with: 'arthur'
-    # fill_in "Password", with: 'arthur'
-    # click_button 'Sign In'
-    # save_and_open_page
+
     expect(page).to have_content "arthur"
   end
 
 end
 
 feature "logging out" do
+  before :each do
+    sign_up_as_arthur
+    sign_in("arthur")
+  end
 
-  it "begins with logged out state"
+  it "begins with logged out state" do
+    expect(page).to have_button "Sign Out"
+  end
 
-  it "doesn't show username on the homepage after logout"
+  it "doesn't show username on the homepage after logout" do
+    click_button 'Sign Out'
+    expect(page).not_to have_content "arthur"
+  end
 
 end
