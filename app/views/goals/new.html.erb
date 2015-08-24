@@ -1,0 +1,13 @@
+<h1>Create a New Goal</h1>
+
+<form action="<%= goals_url %>" method="POST">
+  <%= auth_token_input %>
+  <label for="body">Goal</label>
+  <textarea id="body" name="goal[body]"><%= @goal.body %></textarea>
+
+  <br>
+  <%= select("goal", "category", %w(public private).map {|cat| [cat.capitalize, cat]}) %>
+
+  <br>
+  <button>Create Goal</button>
+</form>
