@@ -108,3 +108,8 @@ def make_goal(body, category)
   select category, :from => 'Category'
   click_button "Create Goal"
 end
+
+def make_comment(body)
+  fill_in 'comment_body', with: body
+  click_button "Add Comment"
+end

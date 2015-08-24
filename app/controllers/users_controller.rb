@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     if current_user == @user
       @private_goals = @user.goals.where(category: "private")
     end
+    @comments = []
   end
 
   private

@@ -1,22 +1,40 @@
-<h1>My Goals</h1>
+<h1><%= @user.username %>'s Goals</h1>
 <h2>Public Goals</h2>
 <ul>
   <% @public_goals.each do |goal| %>
     <li>
-      <%= goal.body %>, status: <%= goal.status %>
+      <%= link_to goal.body, goal %>, status: <%= goal.status %>
       <%= button_to "Complete", complete_goal_url(goal) if goal.status != "complete"%>
     </li>
   <% end %>
 </ul>
 
+<% if @user == current_user %>
 <h2>Private Goals</h2>
 <ul>
   <% @private_goals.each do |goal| %>
     <li>
-      <%= goal.body %>, status: <%= goal.status %>
+      <%= link_to goal.body, goal %>, status: <%= goal.status %>
       <%= button_to "Complete", complete_goal_url(goal) if goal.status != "complete"%>
     </li>
   <% end %>
 </ul>
+<% end %>
 
 <%= link_to "Create a Goal", new_goal_url %>
+
+<h3>Comments</h3>
+<ul>
+<% @comments.each do |comment| %>
+<li><%= comment.body %></li>
+<% end %>
+</ul>
+
+<form action="" method="post">
+  <%= auth_token_input %>
+  <input type="hidden" name="comment[user_id]" value="<%= @user.id %>">
+
+  <label for="comment_body">Comment</label>
+  <textarea name="comment[body]" id="comment_body"></textarea>
+  <button>Add Comment</button>
+</form>

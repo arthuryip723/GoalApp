@@ -1,0 +1,18 @@
+<h2><%= @goal.body %></h2>
+<p>Created by: <%= @goal.user.username %></p>
+
+<h3>Comments</h3>
+<ul>
+<% @comments.each do |comment| %>
+<li><%= comment.body %></li>
+<% end %>
+</ul>
+
+<form action="" method="post">
+  <%= auth_token_input %>
+  <input type="hidden" name="comment[goal_id]" value="<%= @goal.id %>">
+
+  <label for="comment_body">Comment</label>
+  <textarea name="comment[body]" id="comment_body"></textarea>
+  <button>Add Comment</button>
+</form>

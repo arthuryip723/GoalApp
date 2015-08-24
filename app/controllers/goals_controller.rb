@@ -49,6 +49,11 @@ class GoalsController < ApplicationController
     redirect_to goals_url
   end
 
+  def show
+    @goal = Goal.find(params[:id])
+    @comments = []
+  end
+
   private
   def goal_params
     params.require(:goal).permit(:body, :category)
