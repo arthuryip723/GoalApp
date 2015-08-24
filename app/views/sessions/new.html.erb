@@ -1,9 +1,9 @@
-<h1>Create a New User</h1>
-<form action="<%= users_url %>" method="POST">
+<h1>Sign In</h1>
+<form action="<%= session_url %>" method="POST">
   <%= auth_token_input %>
   <label for="username">Username</label>
   <input type="text" id="username" name="user[username]">
   <label for="password">Password</label>
   <input type="password" id="password" name="user[password]">
-  <button>Sign Up</button>
+  <button>Sign In</button>
 </form>
