@@ -34,7 +34,7 @@ feature "Creating a Comments" do
   context "on a user" do
     before :each do
       sign_up("arthur")
-      click_button("Go to my Goals")
+      click_link("Go to my Goals")
     end
 
     it "shows a comment box" do

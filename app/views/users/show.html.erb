@@ -30,9 +30,10 @@
 <% end %>
 </ul>
 
-<form action="" method="post">
+<form action="<%= comments_url %>" method="post">
+  <input type="hidden" name="comment[commentable_type]" value="User">
   <%= auth_token_input %>
-  <input type="hidden" name="comment[user_id]" value="<%= @user.id %>">
+  <input type="hidden" name="comment[commentable_id]" value="<%= @user.id %>">
 
   <label for="comment_body">Comment</label>
   <textarea name="comment[body]" id="comment_body"></textarea>

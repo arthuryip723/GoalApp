@@ -51,7 +51,7 @@ class GoalsController < ApplicationController
 
   def show
     @goal = Goal.find(params[:id])
-    @comments = []
+    @comments = @goal.comments
   end
 
   private

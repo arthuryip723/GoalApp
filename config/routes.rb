@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     end
   end
   resource :session, only: [:new, :create, :destroy]
+  resources :comments, only: [:create]
 end
