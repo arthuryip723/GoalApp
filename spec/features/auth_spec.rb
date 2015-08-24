@@ -27,7 +27,7 @@ feature "logging in" do
   end
 
   it "shows username on the homepage after login" do
-    sign_up_as_arthur
+    sign_up("arthur")
     sign_in("arthur")
 
     expect(page).to have_content "arthur"
@@ -37,7 +37,7 @@ end
 
 feature "logging out" do
   before :each do
-    sign_up_as_arthur
+    sign_up("arthur")
     sign_in("arthur")
   end
 
@@ -49,5 +49,4 @@ feature "logging out" do
     click_button 'Sign Out'
     expect(page).not_to have_content "arthur"
   end
-
 end

@@ -1,9 +1,9 @@
 class GoalsController < ApplicationController
   before_action :require_signin
   def index
-    @public_goals = Goal.where(category: "public")
-    @private_goals = current_user.goals.where(category: "private")
-    # fail
+    @public_goals = Goal.where(category: "public").includes(:user)
+    @private_goals = current_user.goals.where(category: "private").includes(:user)
+    @completed_goals = current_user.goals.where(status: "complete")
   end
 
   def new
@@ -35,8 +35,17 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
     @goal.destroy
+    redirect_to goals_url
+  end
+
+  def complete
+    @goal = current_user.goals.find(params[:id])
+    # @goal.status = 'complete'
+    # @goal.save!
+    @goal.update!(status: 'complete')
+    # fail
     redirect_to goals_url
   end
 

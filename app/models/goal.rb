@@ -3,7 +3,7 @@ class Goal < ActiveRecord::Base
   validates :category, inclusion: %w(public private)
   validates :status, inclusion: %W(complete uncomplete)
   after_initialize do
-    self.status = "uncomplete"
+    self.status ||= "uncomplete"
   end
 
   belongs_to :user

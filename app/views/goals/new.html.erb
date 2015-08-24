@@ -6,6 +6,7 @@
   <textarea id="body" name="goal[body]"><%= @goal.body %></textarea>
 
   <br>
+  <label for="goal_category">Category</label>
   <%= select("goal", "category", %w(public private).map {|cat| [cat.capitalize, cat]}) %>
 
   <br>
